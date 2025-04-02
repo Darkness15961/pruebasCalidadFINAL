@@ -19,3 +19,25 @@ Auth::routes();
 Route::get('/', function(){
     return redirect()->route('login');
 });
+
+// Distribución académica
+Route::get('/distribucion-academica', function () {
+    return View('admin.distribrucionAcademica');
+});
+
+// Creación de horarios
+Route::get('/horarios', function () {
+    return View('admin.horarios');
+});
+
+
+// Publicación de horarios
+Route::get('/publicar-horarios', function () {
+    return View('admin.prublicacionHorarios');
+});
+
+// Actualización de carpetas académicas
+Route::get('/carpetas-academicas', function () {
+    return View('admin.carpetasAcademicas');
+});
+

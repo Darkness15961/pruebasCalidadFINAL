@@ -318,16 +318,26 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Gestión de Programación Académica'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Distribución académica',
+            'url'  => '/distribucion-academica',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Elaborar Horarios',
+            'url'  => '/horarios',
+            'icon' => 'fas fa-calendar'
+        ],
+        [
+            'text' => 'Publicar Horarios',
+            'url'  => '/publicar-horarios',
+            'icon' => 'fas fa-calendar-day',
+        ],
+        [
+            'text' => 'Actualización de carpetas académicas',
+            'url'  => '/carpetas-academicas',
+            'icon' => 'fas fa-folder-open',
         ],
         [
             'text'    => 'multilevel',
