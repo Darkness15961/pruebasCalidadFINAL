@@ -22,22 +22,22 @@ Route::get('/', function(){
 
 // Distribución académica
 Route::get('/distribucion-academica', function () {
-    return View('admin.distribrucionAcademica');
+    return view('admin.distribrucionAcademica');
 });
 
 // Creación de horarios
 Route::get('/horarios', function () {
-    return View('admin.horarios');
+    return view('admin.horarios');
 });
 
 
 // Publicación de horarios
 Route::get('/publicar-horarios', function () {
-    return View('admin.prublicacionHorarios');
+    return view('admin.prublicacionHorarios');
 });
 
 // Actualización de carpetas académicas
 Route::get('/carpetas-academicas', function () {
-    return View('admin.carpetasAcademicas');
+    return view('admin.carpetasAcademicas');
 });
 
