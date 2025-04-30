@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Aulas;
 use Illuminate\Http\Request;
+use DB;
 
 class AulasController extends Controller
 {
@@ -14,7 +15,8 @@ class AulasController extends Controller
      */
     public function index()
     {
-        //
+        $aulas = Aulas::simplePaginate(10);
+        return view('admin.aulas', compact('aulas'));
     }
 
     /**
@@ -35,7 +37,26 @@ class AulasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'codigo' => 'required',
+            'tipo' => 'required',
+            'aforo' => 'required',
+        ]);
+
+       //validar con try catch
+       try {
+            $aula = new Aulas();
+            $aula->codigo = $request->codigo;
+            $aula->tipo = $request->tipo;
+            $aula->aforo = $request->aforo;
+            $aula->save();
+
+            return redirect()->route('aulas.index')->with('success', 'Aula creada correctamente');
+        } catch (\Exception $e) {
+
+            return redirect()->route('aulas.index')->with('error', 'Error al crear el aula: ' . $e->getMessage());
+        }
+    
     }
 
     /**
@@ -78,8 +99,16 @@ class AulasController extends Controller
      * @param  \App\Models\Aulas  $aulas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Aulas $aulas)
+    public function destroy($id)
     {
-        //
+        //borrar
+        $aula = DB::table('aulas')->where('aula_id', $id)->first();
+
+        if ($aula) {
+            DB::table('aulas')->where('aula_id', $id)->delete();
+            return response()->json(['success' => true, 'message' => 'Aula eliminada correctamente']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Aula no encontrada']);
+        }
     }
 }
