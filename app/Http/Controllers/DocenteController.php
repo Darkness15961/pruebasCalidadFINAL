@@ -14,7 +14,8 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        //
+        $docentes = Docente::simplePaginate(10);
+        return view('admin.docentes', compact('docentes'));
     }
 
     /**

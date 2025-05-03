@@ -318,6 +318,11 @@ return [
             'icon' => 'fas fa-fw fa-home',
         ],
         [
+            'text' => 'Cursos',
+            'url'  => '/cursos',
+            'icon' => 'fas fa-fw fa-book',
+        ],
+        [
             'text' => 'Docentes',
             'url'  => '/docentes',
             'icon' => 'fas fa-fw fa-user',

@@ -14,7 +14,8 @@ class CursoController extends Controller
      */
     public function index()
     {
-        //
+        $cursos = Curso::simplePaginate(10);
+        return view('admin.cursos', compact('cursos'));
     }
 
     /**
@@ -35,7 +36,23 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string',
+            'horas_t' => 'required|integer',
+            'horas_p' => 'required|integer',
+            'creditos' => 'required|integer|min:0',
+            'descripcion' => 'nullable|string|max:255',
+        ]);        
+
+        $curso = new Curso();
+        $curso->nombre = $request->nombre;
+        $curso->horas_teoricas = $request->horas_t;
+        $curso->horas_practicas = $request->horas_p;
+        $curso->creditos = $request->creditos;
+        $curso->descripcion = $request->descripcion;
+        $curso->save();
+
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -69,7 +86,22 @@ class CursoController extends Controller
      */
     public function update(Request $request, Curso $curso)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string',
+            'horas_t' => 'required|integer',
+            'horas_p' => 'required|integer',
+            'creditos' => 'required|integer|min:0',
+            'descripcion' => 'nullable|string|max:255',
+        ]);
+
+        $curso->nombre = $request->nombre;
+        $curso->horas_teoricas = $request->horas_t;
+        $curso->horas_practicas = $request->horas_p;
+        $curso->creditos = $request->creditos;
+        $curso->descripcion = $request->descripcion;
+        $curso->save();
+
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -78,8 +110,17 @@ class CursoController extends Controller
      * @param  \App\Models\Curso  $curso
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Curso $curso)
+    public function destroy($id)
     {
-        //
+        //borrar
+        $curso = DB::table('cursos')->where('curso_id', $id)->first();
+
+        if ($curso) {
+            DB::table('cursos')->where('curso_id', $id)->delete();
+            return response()->json(['success' => true, 'message' => 'Curso eliminado correctamente']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Curso no encontrado']);
+        }
+
     }
 }
