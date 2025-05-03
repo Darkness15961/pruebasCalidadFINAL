@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AulasController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\DocenteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,11 +25,17 @@ Route::get('/', function(){
 
 Route::get('/aulas', [AulasController::class,'index'])->name('aulas.index');
 Route::post('/aulas', [AulasController::class,'store'])->name('aulas.store');
+Route::put('/aulas/{id}', [AulasController::class,'update'])->name('aulas.update');
 Route::delete('/aulas/{id}', [AulasController::class,'destroy'])->name('aulas.destroy');
 
-Route::get('/docentes', function(){
-    return view('admin.docentes');
-});
+Route::get('/docentes', [DocenteController::class,'index'])->name('docentes.index');
+Route::post('/docentes', [DocenteController::class,'store'])->name('docentes.store');
+Route::get('/docentes/{id}', [DocenteController::class,'destroy'])->name('docentes.destroy');
+
+Route::get('/cursos', [CursoController::class, 'index'])->name('cursos.index');
+Route::post('/cursos', [CursoController::class, 'store'])->name('cursos.store');
+Route::put('/cursos/{id}', [CursoController::class, 'update'])->name('cursos.update');
+Route::delete('/cursos/{id}', [CursoController::class, 'destroy'])->name('cursos.destroy');
 
 // Distribución académica
 Route::get('/distribucion-academica', function () {
