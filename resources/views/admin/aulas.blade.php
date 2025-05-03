@@ -14,7 +14,7 @@
     Crear Aula
 </button>
 <div class="card mt-4">
-    <x-adminlte-card title="Lista de Aulas" theme="light" icon="fas fa-users">
+    <x-adminlte-card title="Lista de Aulas" theme="light" icon="fas fa-home">
         <table class="table table-hover table-bordered">
             <thead class="thead-light">
                 <tr>
