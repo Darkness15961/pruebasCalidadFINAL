@@ -11,7 +11,7 @@
 <x-adminlte-button label="Crear Curso" theme="primary" data-toggle="modal" data-target="#crearModal" class="mb-3" />
 
 {{-- Card con tabla de docentes --}}
-<x-adminlte-card title="Lista de Cursos" theme="light" icon="fas fa-users">
+<x-adminlte-card title="Lista de Cursos" theme="light" icon="fas fa-book">
     <table class="table table-hover table-bordered">
         <thead class="thead-light">
             <tr>

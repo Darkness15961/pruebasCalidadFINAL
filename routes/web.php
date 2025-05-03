@@ -3,6 +3,7 @@
 use App\Http\Controllers\AulasController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\DocenteController;
+use App\Http\Controllers\HorarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -43,9 +44,10 @@ Route::get('/distribucion-academica', function () {
 });
 
 // Creación de horarios
-Route::get('/horarios', function () {
-    return view('admin.horarios');
-});
+Route::get('/horarios', [HorarioController::class, 'index'])->name('horarios.index');
+Route::post('/horarios', [HorarioController::class, 'store'])->name('horarios.store');
+Route::put('/horarios/{id}', [HorarioController::class, 'update'])->name('horarios.update');
+Route::get('/get_horarios', [HorarioController::class, 'get_horarios']);
 
 
 // Publicación de horarios
